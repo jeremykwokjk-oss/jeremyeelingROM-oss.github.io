@@ -80,7 +80,11 @@ footer{text-align:center;padding:0 30px 34px;color:var(--muted);font-size:13px;l
   <div class="rsvp-sub">We would be so happy to have you with us!<br>Please let us know by <strong>8 October 2026</strong>.</div>
 </header>
 
-<form id="rsvpForm">
+
+  <form id="rsvpForm"
+      action="https://script.google.com/macros/s/AKfycbxo756rr2C3X8oTEcjOPk9RiPs5Hs38NBCQaX1DonV8Vc6W42BUjGleAKda2O2-eOtV/exec"
+      method="POST"
+      target="hidden_iframe">
   <div class="section">
     <label for="name">Name / 姓名 *</label>
     <input id="name" name="name" required placeholder="Your full name">
@@ -94,8 +98,26 @@ footer{text-align:center;padding:0 30px 34px;color:var(--muted);font-size:13px;l
     </div>
   </div>
 
+<div class="section">
+  <span class="legend">Will you be driving? / 您会驾车前来吗？ *</span>
+
+  <div class="options">
+    <label class="option">
+      <input type="radio" name="driving" value="Yes" required>
+      Yes / 是
+    </label>
+
+    <label class="option">
+      <input type="radio" name="driving" value="No">
+      No / 否
+    </label>
+  </div>
+</div>
+
+
+
   <div class="section dinner-section">
-    <span class="legend">Dinner at 6:30 PM / 晚宴 6:30pm</span>
+    <span class="legend">Dinner at 5:30 PM / 晚宴 6:30pm</span>
     <div class="dinner-card">
       <div class="dinner-title">Soup Restaurant · Suntec City</div>
       <div class="dinner-sub">Would you be able to join us for dinner? / 是否能出席晚宴？</div>
@@ -127,16 +149,22 @@ footer{text-align:center;padding:0 30px 34px;color:var(--muted);font-size:13px;l
 
   <button type="submit">Send RSVP · 提交回复</button>
   <div class="success" id="success">
-    Thank you! ♡ Your ROM & dinner RSVP has been recorded on this device.<br>
-    如需更改回复，请联系 Ee Ling 或 Jeremy.
-  </div>
+  Thank you! ♡ Your ROM & dinner RSVP has been recorded successfully.<br>
+  谢谢您！♡ 您的 ROM 及晚宴回复已成功提交。
+</div>
 
   <div class="contact">
     <div><strong>RSVP Contacts</strong></div>
     <div style="margin-top:8px">蔡依玲 Ee Ling · 8030 7574</div>
     <div>郭绍雄 Jeremy · 9630 6352</div>
   </div>
+    <iframe
+  name="hidden_iframe"
+  id="hidden_iframe"
+  style="display:none;">
+</iframe>
 </form>
+  
 
 <footer>
   Thank you for celebrating this special moment with us! ♡<br>
@@ -146,13 +174,23 @@ footer{text-align:center;padding:0 30px 34px;color:var(--muted);font-size:13px;l
 </main>
 
 <script>
-document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const data = Object.fromEntries(new FormData(this).entries());
-  localStorage.setItem('rom-rsvp-latest', JSON.stringify({...data, savedAt:new Date().toISOString()}));
-  document.getElementById('success').style.display='block';
-  this.querySelector('button').textContent='RSVP Saved · 已保存';
-  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+const form = document.getElementById('rsvpForm');
+const success = document.getElementById('success');
+const button = form.querySelector('button');
+
+form.addEventListener('submit', function(e) {
+
+  // Let the form submit normally to Google Apps Script
+  // through the hidden iframe.
+
+  button.disabled = true;
+  button.textContent = 'Submitting RSVP · 提交中...';
+
+  // Show success message after submission
+  setTimeout(function() {
+    success.style.display = 'block';
+    button.textContent = 'RSVP Submitted · 已提交';
+  }, 1000);
 });
 </script>
 </body>
