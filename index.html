@@ -56,6 +56,35 @@ button:hover{filter:brightness(.97)}
 footer{text-align:center;padding:0 30px 34px;color:var(--muted);font-size:13px;line-height:1.7}
 @media(max-width:600px){.page{padding:0 7px 24px}.card{border-radius:22px}.hero{padding:34px 18px 25px}.names-wrap{gap:5px}.person .zhname{font-size:24px}.person .enname{font-size:11px;letter-spacing:.08em}.heart{font-size:22px}.meta-row{grid-template-columns:82px 1fr}form{padding:8px 18px 28px}.grid{grid-template-columns:1fr}.ornament:before,.ornament:after{width:55px}}
 </style>
+.pdf-invitation {
+  text-align: center;
+  margin: 24px 0;
+}
+
+.pdf-invitation a {
+  display: inline-block;
+  padding: 14px 24px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--paper2);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(104, 75, 57, 0.08);
+}
+
+.pdf-invitation a:hover {
+  transform: translateY(-1px);
+}
+
+.pdf-invitation span {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
 </head>
 <body>
 <main class="page">
@@ -79,7 +108,7 @@ footer{text-align:center;padding:0 30px 34px;color:var(--muted);font-size:13px;l
   <div class="rsvp-heading">敬请回复 · RSVP</div>
   <div class="rsvp-sub">We would be so happy to have you with us!<br>Please let us know by <strong>8 October 2026</strong>.</div>
 </header>
-<div class="invite-link-wrap"><a class="invite-link" href="ROM%20%26%20Dinner.pdf" target="_blank" rel="noopener">View Invitation PDF · 查看邀请函</a></div>
+<div class="pdf-invitation"> <a href="files/ROM%20%26%20Dinner.pdf" target="_blank" rel="noopener"> 💌 View ROM & Dinner Invitation <span>查看 ROM 及晚宴邀请函</span> </a> </div>
 
   <form id="rsvpForm"
       action="https://script.google.com/macros/s/AKfycbxo756rr2C3X8oTEcjOPk9RiPs5Hs38NBCQaX1DonV8Vc6W42BUjGleAKda2O2-eOtV/exec"
